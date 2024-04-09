@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function BookForm() {
+function BookForm({booksData, setBooksData}) {
 
 
     // INPUT STATE
@@ -10,7 +10,26 @@ function BookForm() {
 
     // HANDLE SUBMIT
     function handleSubmit(event) {
-        event.preventDefault()
+        event.preventDefault();
+
+        fetch("http://localhost:3003/books", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                title, 
+                author, 
+                likes: 0, 
+                reads: 0
+            })
+        })
+        .then(res => res.json())
+        .then(newBookObj => {
+            setBooksData([...booksData, newBookObj])
+        })
+        
     }
 
 

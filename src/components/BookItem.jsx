@@ -1,4 +1,4 @@
-function BookItem({ book }) {
+function BookItem({ book, handleDelete, handleUpdateLikes, handleUpdateReads }) {
 
 
     // RENDER
@@ -9,11 +9,11 @@ function BookItem({ book }) {
 
             <h3>By {book.author}</h3>
 
-            <button>{book.likes} Likes</button>
+            <button onClick={() => handleUpdateLikes(book)}>{book.likes} Likes</button>
 
-            <button>Read by {book.reads} people</button>
+            <button onClick={() => handleUpdateReads(book)}>Read by {book.reads} people</button>
 
-            <button>Remove Book</button>
+            <button onClick={() => handleDelete(book.id)}>Remove Book</button>
 
         </div>
     )
